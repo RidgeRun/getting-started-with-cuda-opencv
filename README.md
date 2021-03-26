@@ -24,3 +24,35 @@ the appropriate OpenCV+CUDA handling.
   <img src="dog.jpg" alt="Original image of a cute, big-eyed puppy in grayscale" title="Original image of Bartok the Dachshund" width="300"/>
   <img src="dog_gradient.jpg" alt="Resulting gradient image" title="Gradient image of Bartok the Dachshund" width="300"/>
 </p>
+
+## Building the project
+
+As usual with OpenCV projects, the chosen build system was
+CMake. Start by making sure you have these dependencies installed:
+* CMake
+* OpenCV (with CUDA enabled)
+
+Then proceed normally as follows:
+```bash
+# Clone the project
+git clone https://github.com/RidgeRun/getting-started-with-cuda-opencv.git
+cd getting-started-with-cuda-opencv
+
+# Configure the project
+mkdir build
+cd build
+cmake ..
+
+# Build the project
+make
+```
+
+If everything went okay, you should be able to run the demos. **You must run the demos in the directory where dog.jpg is!**
+
+```bash
+cd ..
+./build/sobel_cpu
+```
+
+All the programs will generate a *dog_gradient.jpg* with the resulting
+image.
