@@ -28,3 +28,6 @@ target_link_libraries (sobel_gpu_4_shared_mem ${OpenCV_LIBS})
 
 add_executable (sobel_gpu_5_shared_mem_streams sobel_gpu_5_shared_mem_streams.cc)
 target_link_libraries (sobel_gpu_5_shared_mem_streams ${OpenCV_LIBS})
+
+add_executable (sobel_gpu_5_pinned_mem_streams sobel_gpu_5_pinned_mem_streams.cc)
+target_link_libraries (sobel_gpu_5_pinned_mem_streams ${OpenCV_LIBS})
