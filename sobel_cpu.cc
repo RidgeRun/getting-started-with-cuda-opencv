@@ -69,12 +69,20 @@ int
 main() {
   cv::Mat input = cv::imread("dog.jpg", cv::IMREAD_GRAYSCALE);
 
+  if (input.empty()) {
+    std::cerr << "Cannot find \"dog.jpg\" in the current directory!"
+              << std::endl;
+    return 1;
+  }
+
   // The first call is typically a warmup call so we dont benchmark
   cv::Mat output;
   sobel(input, output);
 
   int N = 100;
   double time = cv::getTickCount();
+
+  std::cout << "Performing " << N << " iterations..." << std::flush;
 
   for (int i = 0; i < N; i++) {
     sobel(input, output);
@@ -83,8 +91,8 @@ main() {
   time = 1000.0*(cv::getTickCount() - time)/cv::getTickFrequency();
   time /= N;
 
-  std::cout << "Average for " << N << " CPU runs: " << time << "ms"
-            << std::endl;
+  std::cout << " done!" << std::endl << "Average for " << N << " CPU runs: "
+            << time << "ms" << std::endl;
 
   cv::imwrite("dog_gradient.jpg", output);
 
