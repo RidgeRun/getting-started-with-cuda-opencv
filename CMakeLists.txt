@@ -19,3 +19,6 @@ target_link_libraries (sobel_gpu_1_naive ${OpenCV_LIBS})
 
 add_executable (sobel_gpu_2_single_alloc sobel_gpu_2_single_alloc.cc)
 target_link_libraries (sobel_gpu_2_single_alloc ${OpenCV_LIBS})
+
+add_executable (sobel_gpu_3_pinned_mem sobel_gpu_3_pinned_mem.cc)
+target_link_libraries (sobel_gpu_3_pinned_mem ${OpenCV_LIBS})
