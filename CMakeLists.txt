@@ -13,3 +13,6 @@ include_directories (${OpenCV_INCLUDE_DIRS})
 # Programs
 add_executable (sobel_cpu sobel_cpu.cc)
 target_link_libraries (sobel_cpu ${OpenCV_LIBS})
+
+add_executable (sobel_gpu_1_naive sobel_gpu_1_naive.cc)
+target_link_libraries (sobel_gpu_1_naive ${OpenCV_LIBS})
