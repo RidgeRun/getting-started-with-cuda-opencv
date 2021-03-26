@@ -69,7 +69,7 @@ sobel(const Filters &filters, const cv::Mat &input, cv::Mat &output) {
 
   // MAG2 = X^2 + Y^2
   cv::cuda::GpuMat gpu_mag2;
-  cv::cuda::addWeighted(gpu_x2, 0.5, gpu_y2, 0.5, 0, gpu_mag2);
+  cv::cuda::addWeighted(gpu_x2, 1, gpu_y2, 1, 0, gpu_mag2);
 
   // MAG = √(X^2 + Y^2)
   cv::cuda::GpuMat gpu_mag;

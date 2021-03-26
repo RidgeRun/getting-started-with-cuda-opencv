@@ -56,7 +56,7 @@ sobel(const cv::Mat &input, cv::Mat &output) {
 
   // Compute MAG2 = X^2 + Y^2
   cv::Mat mag2;
-  cv::addWeighted(x2, 0.5, y2, 0.5, 0, mag2);
+  cv::addWeighted(x2, 1, y2, 1, 0, mag2);
 
   // Compute MAG = √ (X^2 + Y^2)
   cv::Mat mag;

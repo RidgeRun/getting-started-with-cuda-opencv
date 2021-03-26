@@ -75,7 +75,7 @@ sobel(const Filters &filters, GpuMemories &gpu) {
   cv::cuda::pow(gpu.y, 2, gpu.y2);
 
   // MAG2 = X^2 + Y^2
-  cv::cuda::addWeighted(gpu.x2, 0.5, gpu.y2, 0.5, 0, gpu.mag2);
+  cv::cuda::addWeighted(gpu.x2, 1, gpu.y2, 1, 0, gpu.mag2);
 
   // MAG = √(X^2 + Y^2)
   cv::cuda::sqrt(gpu.mag2, gpu.mag);
