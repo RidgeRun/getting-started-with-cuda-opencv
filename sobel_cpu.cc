@@ -32,6 +32,7 @@
  */
 
 #include <iostream>
+#include <string>
 
 #include <opencv2/core.hpp>         // Basic OpenCV structures
 #include <opencv2/imgproc.hpp>      // Image processing methods for the CPU
@@ -66,11 +67,21 @@ sobel(const cv::Mat &input, cv::Mat &output) {
 }
 
 int
-main() {
-  cv::Mat input = cv::imread("dog.jpg", cv::IMREAD_GRAYSCALE);
+main(int argc, char *argv[]) {
+  std::string to_read = "dog.jpg";
+  if (argc >= 2) {
+    to_read = argv[1];
+  }
+
+  std::string to_write = "dog_gradient_cpu.jpg";
+  if (argc >= 3) {
+    to_write = argv[2];
+  }
+
+  cv::Mat input = cv::imread(to_read, cv::IMREAD_GRAYSCALE);
 
   if (input.empty()) {
-    std::cerr << "Cannot find \"dog.jpg\" in the current directory!"
+    std::cerr << "Unable to find \"" << to_read << "\". Is the path ok?"
               << std::endl;
     return 1;
   }
@@ -94,7 +105,8 @@ main() {
   std::cout << " done!" << std::endl << "Average for " << N << " CPU runs: "
             << time << "ms" << std::endl;
 
-  cv::imwrite("dog_gradient.jpg", output);
+  std::cout << "Resulting image wrote to " << to_write << std::endl;
+  cv::imwrite(to_write, output);
 
   return 0;
 }

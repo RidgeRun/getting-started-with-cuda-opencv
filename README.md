@@ -47,12 +47,19 @@ cmake ..
 make
 ```
 
-If everything went okay, you should be able to run the demos. **You must run the demos in the directory where dog.jpg is!**
+If everything went okay, you should be able to run the demos. You may
+specify the input and output images as the first and second parameters
+respectively. Otherwise, "dog.jpg" and "dog_gradient_XXX.jpg" will be
+used by default.
 
 ```bash
+# Run from the build directory
+./sobel_cpu ../dog.jpg
+
+# Specify an alternative output
+./sobel_cpu ../dog.jpg alternative_output.jpg
+
+# Run from top-level with default parameters
 cd ..
 ./build/sobel_cpu
 ```
-
-All the programs will generate a *dog_gradient.jpg* with the resulting
-image.
