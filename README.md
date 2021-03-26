@@ -63,3 +63,22 @@ used by default.
 cd ..
 ./build/sobel_cpu
 ```
+
+## Program Breakdown
+
+The idea of the project is to use the CPU implementation as a baseline
+and then apply each optimization step incrementally.
+
+- **sobel_cpu**: CPU baseline implementation
+- **sobel_gpu_1_naive**: Literal port to GPU
+- **sobel_gpu_2_single_alloc**: Allocate only once the GPU memories
+and recicle them through all the iterations.
+- **sobel_gpu_3_pinned_mem**: Allocate host memory as
+non-pageable/pinned so that the transfer is highly optimized.
+- **sobel_gpu_4_shared_mem**: Allocate shared memory (if possible) for
+the GPU/CPU to eliminate the memory transfer.
+- **sobel_gpu_5_shared_mem_streams**: Use CUDA streams to process
+certain parts of the pipeline in parallel.
+- **sobel_gpu_5_pinned_mem_streams**: Use CUDA streams to process
+certain parts of the pipeline in parallel (alternative implementation
+for pinned memory instead of shared memory).
