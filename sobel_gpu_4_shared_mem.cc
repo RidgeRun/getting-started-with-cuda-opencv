@@ -118,7 +118,7 @@ main(int argc, char *argv[]) {
   };
 
   GpuMemories gpu = {
-    input : shared_output.createGpuMatHeader(),
+    input : shared_input.createGpuMatHeader(),
     blurred : cv::cuda::GpuMat(input.size(), CV_8UC1),
     x : cv::cuda::GpuMat(input.size(), CV_32FC1),
     y : cv::cuda::GpuMat(input.size(), CV_32FC1),
