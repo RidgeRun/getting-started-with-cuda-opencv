@@ -93,6 +93,8 @@ sobel(const Filters &filters, Streams &streams, GpuMemories &gpu) {
   gpu.mag.convertTo(gpu.output, CV_8UC1, streams.x);
 
   // Migrating data back from GPU to CPU is no longer needed
+
+  streams.x.waitForCompletion();
 }
 
 int

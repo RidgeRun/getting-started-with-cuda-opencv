@@ -68,7 +68,7 @@ static void
 sobel(const Filters &filters, Streams &streams, GpuMemories &gpu,
       const cv::cuda::HostMem &input, cv::cuda::HostMem &output) {
   // Migrate data from the CPU to the GPU
-  gpu.input.upload(input);
+  gpu.input.upload(input, streams.x);
 
   // Low pass filter to clean noise
   filters.gaussian->apply(gpu.input, gpu.blurred, streams.x);
@@ -95,7 +95,9 @@ sobel(const Filters &filters, Streams &streams, GpuMemories &gpu,
   gpu.mag.convertTo(gpu.output, CV_8UC1, streams.x);
 
   // Migrate data back from GPU to CPU
-  gpu.output.download(output);
+  gpu.output.download(output, streams.x);
+
+  streams.x.waitForCompletion();
 }
 
 int
